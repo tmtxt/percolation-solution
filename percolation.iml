@@ -7,5 +7,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file:///usr/local/algs4" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file:///usr/local/algs4" />
+        </SOURCES>
+        <jarDirectory url="file:///usr/local/algs4" recursive="false" />
+        <jarDirectory url="file:///usr/local/algs4" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
