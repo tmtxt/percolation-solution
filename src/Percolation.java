@@ -61,9 +61,17 @@ public class Percolation {
     }
 
     public void open(int row, int col) {
+        // not open again if already open
+        if (isOpen(row, col)) {
+            return;
+        }
+
         row = validateArgument(row);
         col = validateArgument(col);
         int idx = convertToIndex(row, col);
+
+        // set this site to open
+        sites[idx] = 1;
 
         // we have the left to link
         if (col > 0) {
@@ -88,7 +96,11 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int col) {
-        return true;
+        row = validateArgument(row);
+        col = validateArgument(col);
+        int idx = convertToIndex(row, col);
+
+        return sites[idx] == 1;
     }
 
     public boolean isFull(int row, int col) {
