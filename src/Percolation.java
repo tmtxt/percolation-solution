@@ -10,10 +10,14 @@ public class Percolation {
     // store the tree weight
     private int[] weight;
 
+    // count the number of open sites
+    private int openCount;
+
     private int virtualTopIdx;
     private int virtualBottomIdx;
 
     private int n;
+    private int total;
 
     public Percolation(int n) {
         if (n <= 0) {
@@ -22,6 +26,7 @@ public class Percolation {
 
         this.n = n;
         int total = n * n;
+        this.total = total;
 
         // +2 for the virtual top and virtual bottom
         sites = new int[total];
@@ -58,6 +63,8 @@ public class Percolation {
         for (int i = total - n; i < total; i++) {
             id[i] = virtualBottomIdx;
         }
+
+        openCount = 0;
     }
 
     public void open(int row, int col) {
@@ -72,6 +79,7 @@ public class Percolation {
 
         // set this site to open
         sites[idx] = 1;
+        openCount++;
 
         // we have the left to link
         if (col > 0) {
@@ -104,11 +112,11 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
-        return true;
+        return openCount == total;
     }
 
     public int numberOfOpenSites() {
-        return 1;
+        return this.openCount;
     }
 
     public boolean percolates() {
@@ -172,13 +180,16 @@ public class Percolation {
         percolation.open(2, 3);
         System.out.println(Arrays.toString(percolation.id));
         System.out.println(percolation.percolates());
+        System.out.println(percolation.numberOfOpenSites());
 
         percolation.open(3, 3);
         System.out.println(Arrays.toString(percolation.id));
         System.out.println(percolation.percolates());
+        System.out.println(percolation.numberOfOpenSites());
 
         percolation.open(4, 3);
         System.out.println(Arrays.toString(percolation.id));
         System.out.println(percolation.percolates());
+        System.out.println(percolation.numberOfOpenSites());
     }
 }
