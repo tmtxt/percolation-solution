@@ -24,7 +24,7 @@ public class Percolation {
         int total = n * n;
 
         // +2 for the virtual top and virtual bottom
-        sites = new int[total + 2];
+        sites = new int[total];
         id = new int[total + 2];
         weight = new int[total + 2];
 
@@ -46,6 +46,8 @@ public class Percolation {
         // virtual top and bottom point to itself
         id[virtualTopIdx] = virtualTopIdx;
         id[virtualBottomIdx] = virtualBottomIdx;
+        weight[virtualTopIdx] = 1;
+        weight[virtualBottomIdx] = 1;
 
         // link all the sites on the top row to virtual top
         for (int i = 0; i < n; i++) {
@@ -98,7 +100,7 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        return true;
+        return isConnect(virtualTopIdx, virtualBottomIdx);
     }
 
     private int validateArgument(int i) {
@@ -127,6 +129,13 @@ public class Percolation {
         }
     }
 
+    private boolean isConnect(int p, int q) {
+        int rootP = root(p);
+        int rootQ = root(q);
+
+        return rootP == rootQ;
+    }
+
     /**
      * Find root of one item
      *
@@ -146,14 +155,18 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        Percolation per = new Percolation(5);
+        Percolation percolation = new Percolation(5);
 
-//        per.union(10, 15);
-//        per.union(12, 21);
-//        per.union(10, 20);
-//        per.union(10, 24);
-//        per.union(24, 2);
+        percolation.open(2, 3);
+        System.out.println(Arrays.toString(percolation.id));
+        System.out.println(percolation.percolates());
 
-        System.out.println(Arrays.toString(per.id));
+        percolation.open(3, 3);
+        System.out.println(Arrays.toString(percolation.id));
+        System.out.println(percolation.percolates());
+
+        percolation.open(4, 3);
+        System.out.println(Arrays.toString(percolation.id));
+        System.out.println(percolation.percolates());
     }
 }
