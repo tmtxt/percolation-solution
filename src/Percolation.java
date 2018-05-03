@@ -51,18 +51,23 @@ public class Percolation {
         // virtual top and bottom point to itself
         id[virtualTopIdx] = virtualTopIdx;
         id[virtualBottomIdx] = virtualBottomIdx;
+
+        // link all the sites on the top row to virtual top
+//        for (int i = 0; i < n; i++) {
+//            id[i] = virtualTopIdx;
+//        }
+//
+//        // link all the bottom sites to the virtual bottom
+//        for (int i = total - n; i < total; i++) {
+//            id[i] = virtualBottomIdx;
+//        }
+
         weight[virtualTopIdx] = 1;
         weight[virtualBottomIdx] = 1;
 
-        // link all the sites on the top row to virtual top
-        for (int i = 0; i < n; i++) {
-            id[i] = virtualTopIdx;
-        }
-
-        // link all the bottom sites to the virtual bottom
-        for (int i = total - n; i < total; i++) {
-            id[i] = virtualBottomIdx;
-        }
+        // virtual top and bottom are always open
+//        sites[virtualTopIdx] = 1;
+//        sites[virtualBottomIdx] = 1;
 
         openCount = 0;
     }
@@ -84,23 +89,41 @@ public class Percolation {
         // we have the left to link
         if (col > 0) {
             int leftIdx = convertToIndex(row, col - 1);
-            union(idx, leftIdx);
+            unionWhenOpen(idx, leftIdx);
         }
 
         if (col < n - 1) {
             int rightIdx = convertToIndex(row, col + 1);
-            union(idx, rightIdx);
-        }
-
-        if (row > 0) {
-            int downIdx = convertToIndex(row + 1, col);
-            union(idx, downIdx);
+            unionWhenOpen(idx, rightIdx);
         }
 
         if (row < n - 1) {
-            int upIdx = convertToIndex(row - 1, col);
-            union(idx, upIdx);
+            int downIdx = convertToIndex(row + 1, col);
+            unionWhenOpen(idx, downIdx);
         }
+
+        if (row > 0) {
+            int upIdx = convertToIndex(row - 1, col);
+            unionWhenOpen(idx, upIdx);
+        }
+
+        // first row, link to virtual top
+        if (row == 0) {
+            union(idx, virtualTopIdx);
+        }
+
+        if (row == n - 1) {
+            union(idx, virtualBottomIdx);
+        }
+    }
+
+    // union only when q is open site
+    private void unionWhenOpen(int p, int q) {
+        if (sites[q] != 1) {
+            return;
+        }
+
+        union(p, q);
     }
 
     public boolean isOpen(int row, int col) {
@@ -112,7 +135,11 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
-        return openCount == total;
+        row = validateArgument(row);
+        col = validateArgument(col);
+        int idx = convertToIndex(row, col);
+
+        return isConnect(virtualTopIdx, idx);
     }
 
     public int numberOfOpenSites() {
@@ -176,20 +203,43 @@ public class Percolation {
 
     public static void main(String[] args) {
         Percolation percolation = new Percolation(5);
+        System.out.println("initial");
+        System.out.println(Arrays.toString(percolation.id));
+        System.out.println("------");
+
+        percolation.open(1, 3);
+        System.out.println("id " + Arrays.toString(percolation.id));
+        System.out.println("percolates " + percolation.percolates());
+        System.out.println("openSites " + percolation.numberOfOpenSites());
+        System.out.println("isFull " + percolation.isFull(3, 3));
+        System.out.println("------");
 
         percolation.open(2, 3);
-        System.out.println(Arrays.toString(percolation.id));
-        System.out.println(percolation.percolates());
-        System.out.println(percolation.numberOfOpenSites());
+        System.out.println("id " + Arrays.toString(percolation.id));
+        System.out.println("percolates " + percolation.percolates());
+        System.out.println("openSites " + percolation.numberOfOpenSites());
+        System.out.println("isFull " + percolation.isFull(3, 3));
+        System.out.println("------");
 
         percolation.open(3, 3);
-        System.out.println(Arrays.toString(percolation.id));
-        System.out.println(percolation.percolates());
-        System.out.println(percolation.numberOfOpenSites());
+        System.out.println("id " + Arrays.toString(percolation.id));
+        System.out.println("percolates " + percolation.percolates());
+        System.out.println("openSites " + percolation.numberOfOpenSites());
+        System.out.println("isFull " + percolation.isFull(3, 3));
+        System.out.println("------");
 
         percolation.open(4, 3);
-        System.out.println(Arrays.toString(percolation.id));
-        System.out.println(percolation.percolates());
-        System.out.println(percolation.numberOfOpenSites());
+        System.out.println("id " + Arrays.toString(percolation.id));
+        System.out.println("percolates " + percolation.percolates());
+        System.out.println("openSites " + percolation.numberOfOpenSites());
+        System.out.println("isFull " + percolation.isFull(3, 3));
+        System.out.println("------");
+
+        percolation.open(5, 3);
+        System.out.println("id " + Arrays.toString(percolation.id));
+        System.out.println("percolates " + percolation.percolates());
+        System.out.println("openSites " + percolation.numberOfOpenSites());
+        System.out.println("isFull " + percolation.isFull(3, 3));
+        System.out.println("------");
     }
 }
