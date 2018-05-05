@@ -71,11 +71,12 @@ public class PercolationStats {
     }
 
     public static void main(String[] args) {
-        PercolationStats stat = new PercolationStats(200, 100);
-        System.out.println("res " + Arrays.toString(stat.res));
-        System.out.println("mean " + stat.mean());
-        System.out.println("stddev " + stat.stddev());
-        System.out.println("low " + stat.confidenceLo());
-        System.out.println("high " + stat.confidenceHi());
+        int n = Integer.parseInt(args[0]);
+        int trials = Integer.parseInt(args[1]);
+
+        PercolationStats stat = new PercolationStats(n, trials);
+        System.out.println("mean                    = " + stat.mean());
+        System.out.println("stddev                  = " + stat.stddev());
+        System.out.println("95% confidence interval = [" + stat.confidenceLo() + ", " + stat.confidenceHi() + "]");
     }
 }
