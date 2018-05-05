@@ -34,6 +34,7 @@ public class PercolationStats {
         }
     }
 
+    // run each trial and store the result to this.res
     private void runOne(int order) {
         Percolation percolation = new Percolation(n);
         int count = 0;
@@ -54,23 +55,27 @@ public class PercolationStats {
     }
 
     public double mean() {
-        return 0;
+        return StdStats.mean(this.res);
     }
 
     public double stddev() {
-        return 0;
+        return StdStats.stddev(this.res);
     }
 
     public double confidenceLo() {
-        return 0;
+        return StdStats.min(this.res);
     }
 
     public double confidenceHi() {
-        return 0;
+        return StdStats.max(this.res);
     }
 
     public static void main(String[] args) {
-        PercolationStats stat = new PercolationStats(5, 2);
-        System.out.println(Arrays.toString(stat.res));
+        PercolationStats stat = new PercolationStats(200, 100);
+        System.out.println("res " + Arrays.toString(stat.res));
+        System.out.println("mean " + stat.mean());
+        System.out.println("stddev " + stat.stddev());
+        System.out.println("low " + stat.confidenceLo());
+        System.out.println("high " + stat.confidenceHi());
     }
 }
