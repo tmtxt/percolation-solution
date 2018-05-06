@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Percolation {
     // store the site data
     private int[] sites;
@@ -202,44 +200,44 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
-        Percolation percolation = new Percolation(5);
-        System.out.println("initial");
-        System.out.println(Arrays.toString(percolation.id));
-        System.out.println("------");
-
-        percolation.open(1, 3);
-        System.out.println("id " + Arrays.toString(percolation.id));
-        System.out.println("percolates " + percolation.percolates());
-        System.out.println("openSites " + percolation.numberOfOpenSites());
-        System.out.println("isFull " + percolation.isFull(3, 3));
-        System.out.println("------");
-
-        percolation.open(2, 3);
-        System.out.println("id " + Arrays.toString(percolation.id));
-        System.out.println("percolates " + percolation.percolates());
-        System.out.println("openSites " + percolation.numberOfOpenSites());
-        System.out.println("isFull " + percolation.isFull(3, 3));
-        System.out.println("------");
-
-        percolation.open(3, 3);
-        System.out.println("id " + Arrays.toString(percolation.id));
-        System.out.println("percolates " + percolation.percolates());
-        System.out.println("openSites " + percolation.numberOfOpenSites());
-        System.out.println("isFull " + percolation.isFull(3, 3));
-        System.out.println("------");
-
-        percolation.open(4, 3);
-        System.out.println("id " + Arrays.toString(percolation.id));
-        System.out.println("percolates " + percolation.percolates());
-        System.out.println("openSites " + percolation.numberOfOpenSites());
-        System.out.println("isFull " + percolation.isFull(3, 3));
-        System.out.println("------");
-
-        percolation.open(5, 3);
-        System.out.println("id " + Arrays.toString(percolation.id));
-        System.out.println("percolates " + percolation.percolates());
-        System.out.println("openSites " + percolation.numberOfOpenSites());
-        System.out.println("isFull " + percolation.isFull(3, 3));
-        System.out.println("------");
+//        Percolation percolation = new Percolation(5);
+//        System.out.println("initial");
+//        System.out.println(Arrays.toString(percolation.id));
+//        System.out.println("------");
+//
+//        percolation.open(1, 3);
+//        System.out.println("id " + Arrays.toString(percolation.id));
+//        System.out.println("percolates " + percolation.percolates());
+//        System.out.println("openSites " + percolation.numberOfOpenSites());
+//        System.out.println("isFull " + percolation.isFull(3, 3));
+//        System.out.println("------");
+//
+//        percolation.open(2, 3);
+//        System.out.println("id " + Arrays.toString(percolation.id));
+//        System.out.println("percolates " + percolation.percolates());
+//        System.out.println("openSites " + percolation.numberOfOpenSites());
+//        System.out.println("isFull " + percolation.isFull(3, 3));
+//        System.out.println("------");
+//
+//        percolation.open(3, 3);
+//        System.out.println("id " + Arrays.toString(percolation.id));
+//        System.out.println("percolates " + percolation.percolates());
+//        System.out.println("openSites " + percolation.numberOfOpenSites());
+//        System.out.println("isFull " + percolation.isFull(3, 3));
+//        System.out.println("------");
+//
+//        percolation.open(4, 3);
+//        System.out.println("id " + Arrays.toString(percolation.id));
+//        System.out.println("percolates " + percolation.percolates());
+//        System.out.println("openSites " + percolation.numberOfOpenSites());
+//        System.out.println("isFull " + percolation.isFull(3, 3));
+//        System.out.println("------");
+//
+//        percolation.open(5, 3);
+//        System.out.println("id " + Arrays.toString(percolation.id));
+//        System.out.println("percolates " + percolation.percolates());
+//        System.out.println("openSites " + percolation.numberOfOpenSites());
+//        System.out.println("isFull " + percolation.isFull(3, 3));
+//        System.out.println("------");
     }
 }
